@@ -1,0 +1,34 @@
+<DOCTYPE !HTML>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/ehsanStyle.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Test IO</title>
+</head>
+<body style="width: 90%; margin-left: 5%; margin-top: 3%;">
+<div class="panel panel-info">
+<div class="panel-body" id="touchArea">
+<h2><span id="clickNow" class="label label-danger">Press Start Button</span></h2>
+<div id="testArea">
+	<button type="button" class="btn btn-lg btn-success" id="start">Start</button>
+</div>
+<div class="alert alert-success" role="alert">PIN counts = <span id="clickCounts"></span> /50  rounds: <span id="rounds">1</span> /5</div>
+</div>
+</div>
+
+<script src="socket.io/socket.io.js"></script>
+<script src='js/numPad.js'></script>
+<script>	
+	document.getElementById('start').addEventListener("click",function(event){
+		orient();
+		socket.emit('status','User Starts');
+		document.getElementById("testArea").innerHTML="<div class='form-group' id='formDiv'><label for='exampleInputPassword1'>Enter PIN</label><input id='numpadtxt' type='tel' onkeydown='keyDown();' class='form-control'></input><br/><button onclick='nextPIN();' class='btn btn-success' id='formBtn'>Next</button></div>";
+		document.getElementById("clickCounts").innerHTML=1;
+		document.getElementById("clickNow").innerHTML="PIN:"+ pins[0];//+"   "+"No:1";
+		socket.emit('status','Typing Begins');
+		socket.emit('status',pins[0]);
+	},false);
+</script>
+</body>

@@ -1,0 +1,2 @@
+# Reading-sensor-data-for-fifty-4digit-PINs
+This code asks the user to enter fifty 4-digit PINs, each 5 times, and saves the PIN and their sensor measurements (motion and orientation) in a m-lab database. 
